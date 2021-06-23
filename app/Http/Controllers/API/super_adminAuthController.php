@@ -27,7 +27,7 @@ class super_adminAuthController extends Controller
         $token = $super_admin->createToken('BusBookingSystemProjectToken')->plainTextToken;
 
         $response = [
-            'super_admin'=>$super_admin,
+            'user'=>$super_admin,
             'token'=>$token,
         ];
 
@@ -37,7 +37,7 @@ class super_adminAuthController extends Controller
    
     public function super_admin_logout()
     {
-        auth()->super_admin()->tokens()->delete();
+        auth()->user()->tokens()->delete();
         return response(['message'=>'Logged Out Successfully.']);
     }
 
@@ -59,7 +59,7 @@ class super_adminAuthController extends Controller
             $token = $super_admin->createToken('BusBookingSystemProjectTokenLogin')->plainTextToken;
 
             $response = [
-                'super_admin'=>$super_admin,
+                'user'=>$super_admin,
                 'token'=>$token,
             ];
 

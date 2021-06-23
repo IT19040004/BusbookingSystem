@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class usersController extends Controller
 {
-    //Get Function
+    /*Get Function
     public function index()
     {
         $users = user::all();
@@ -85,5 +85,5 @@ class usersController extends Controller
         {
             return response()->json(['message'=>'Not Delete user Details'], 404);
         }
-    }
+    }*/
 }

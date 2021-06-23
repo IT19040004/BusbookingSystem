@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class super_adminsController extends Controller
 {
-    //Get Function
+    /*Get Function
     public function index()
     {
         $super_admins = super_admin::all();
@@ -87,5 +87,5 @@ class super_adminsController extends Controller
         }
     }
 
-    
+    */
 }

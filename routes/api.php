@@ -62,48 +62,12 @@ Route::put('bus_schedule_bookings/{id}/update',[bus_schedule_bookingsController:
 Route::delete('bus_schedule_bookings/{id}/delete',[bus_schedule_bookingsController::class, 'destroy']);
 
 
-/*----------------Users-------------------
-
-//Get API Code
-Route::get('users',[usersController::class, 'index']);
-
-//Show ID API Code
-Route::get('users/{id}/show',[usersController::class, 'show']);
-
-//insert API Code
-Route::post('users/add',[usersController::class, 'store']);
-
-//Update API Code
-Route::put('users/{id}/update',[usersController::class, 'update']);
-
-//Delete API Code
-Route::delete('users/{id}/delete',[usersController::class, 'destroy']);
-*/
-
 });
 
 Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('super_admin_logout', [super_adminAuthController::class, 'super_admin_logout']);
     
-
-/*----------------super_admins-------------------
-
-//Get API Code
-Route::get('super_admins',[super_adminsController::class, 'index']);
-
-//Show ID API Code
-Route::get('super_admins/{id}/show',[super_adminsController::class, 'show']);
-
-//insert API Code
-Route::post('super_admins/add',[super_adminsController::class, 'store']);
-
-//Update API Code
-Route::put('super_admins/{id}/update',[super_adminsController::class, 'update']);
-
-//Delete API Code
-Route::delete('super_admins/{id}/delete',[super_adminsController::class, 'destroy']);
-*/
 
 //----------------routes-------------------
 
@@ -178,6 +142,3 @@ Route::delete('bus_seates/{id}/delete',[bus_seatesController::class, 'destroy'])
 
 });
 
-//Route::middleware('auth:api')->get('/user', function (Request $request) {
-//    return $request->user();
-//});
