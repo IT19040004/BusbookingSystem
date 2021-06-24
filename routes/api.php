@@ -10,20 +10,21 @@ use App\Http\Controllers\bus_schedule_bookingsController;
 use App\Http\Controllers\usersController;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\super_adminAuthController;
+//use App\Http\Controllers\PasswordResetRequestUserController;
+
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::post('User_register', [AuthController::class, 'User_register']);
 Route::post('User_login', [AuthController::class, 'User_login']);
+//Route::post('sendEmail', [PasswordResetRequestUserController::class, 'sendEmail']);
+Route::post('sendEmail', 'App\Http\Controllers\PasswordResetRequestUserController@sendEmail');
 
-Route::post('super_admin_register', [super_adminAuthController::class, 'super_admin_register']);
-Route::post('super_admin_login', [super_adminAuthController::class, 'super_admin_login']);
 
 Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('User_logout', [AuthController::class, 'User_logout']);
-    
     
 
 //----------------bus_schedules-------------------
@@ -63,6 +64,9 @@ Route::delete('bus_schedule_bookings/{id}/delete',[bus_schedule_bookingsControll
 
 
 });
+
+Route::post('super_admin_register', [super_adminAuthController::class, 'super_admin_register']);
+Route::post('super_admin_login', [super_adminAuthController::class, 'super_admin_login']);
 
 Route::middleware('auth:sanctum')->group(function () {
 

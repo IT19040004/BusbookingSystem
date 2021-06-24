@@ -18,7 +18,8 @@ class CreateBusRoutesTable extends Migration
             $table->string('bus_id');
             $table->string('route_id');
             $table->string('status');
-           
+           // $table->foreignId('bus_id')->constrained()->references('id')->on('buses');
+           // $table->foreignId('route_id')->constrained()->references('id')->on('routes');
             $table->timestamps();
         });
     }
