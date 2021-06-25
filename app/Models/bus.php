@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class bus extends Model
 {
-    use HasFactory;
+    //use HasFactory;
+    protected $table = 'bus';
     protected $fillable =[
         'name',
         'type',
         'vehical_number',
-        
     ];
 }

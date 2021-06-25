@@ -35,8 +35,8 @@ class bus_seatesController extends Controller
     {
         $request->validate([
             'bus_id'=>'required|max:191',
-            'seat_number'=>'required|max:191',
-            'price'=>'required|max:191',
+            'seat_number'=>'required|numeric|max:191',
+            'price'=>'required|numeric|max:191',
         ]);
   
         $bus_seates = new bus_seates;
@@ -53,8 +53,8 @@ class bus_seatesController extends Controller
     {
         $request->validate([
             'bus_id'=>'required|max:191',
-            'seat_number'=>'required|max:191',
-            'price'=>'required|max:191',
+            'seat_number'=>'required|numeric|max:191',
+            'price'=>'required|numeric|max:191',
         ]);
   
         $bus_seates = bus_seates::find($id);

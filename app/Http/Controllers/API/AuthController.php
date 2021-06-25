@@ -15,7 +15,7 @@ class AuthController extends Controller
         $data = $request->validate([
             'name'=>'required|string|max:191',
             'email'=>'required|email|max:191|unique:users,email',
-            'password'=>'required|string',
+            'password'=>['required','string','min:8','regex:/[a-z]/','regex:/[A-Z]/','regex:/[0-9]/','regex:/[@$!%*#?&]/',],
         ]);
 
         $user = User::create([
@@ -24,11 +24,11 @@ class AuthController extends Controller
             'password'=> Hash::make($data['password']),
         ]);
 
-        $token = $user->createToken('BusBookingSystemProjectToken')->plainTextToken;
+        //$token = $user->createToken('BusBookingSystemProjectToken')->plainTextToken;
 
         $response = [
             'user'=>$user,
-            'token'=>$token,
+        //  'token'=>$token,
         ];
 
         return response($response, 201);
@@ -46,7 +46,7 @@ class AuthController extends Controller
     {
         $data = $request->validate([
             'email'=>'required|email|max:191',
-            'password'=>'required|string',
+            'password'=>['required','string','min:8','regex:/[a-z]/','regex:/[A-Z]/','regex:/[0-9]/','regex:/[@$!%*#?&]/',],
         ]);
 
         $user = User::where('email', $data['email'])->first();

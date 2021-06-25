@@ -38,7 +38,7 @@ class routesController extends Controller
             'node_two'=>'required|max:191',
             'route_number'=>'required|max:191',
             'distance'=>'required|max:191',
-            'time'=>'required|max:191',
+            'time'=>['required','date_format:H:i','max:191'],
         ]);
   
         $routes = new routes;
@@ -60,7 +60,7 @@ class routesController extends Controller
             'node_two'=>'required|max:191',
             'route_number'=>'required|max:191',
             'distance'=>'required|max:191',
-            'time'=>'required|max:191',
+            'time'=>['required','date_format:H:i','max:191'],
         ]);
   
         $routes = routes::find($id);

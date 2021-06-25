@@ -15,7 +15,7 @@ class super_adminAuthController extends Controller
         $data = $request->validate([
             'name'=>'required|string|max:191',
             'email'=>'required|email|max:191|unique:super_admins,email',
-            'password'=>'required|string',
+            'password'=>['required','string','min:8','regex:/[a-z]/','regex:/[A-Z]/','regex:/[0-9]/','regex:/[@$!%*#?&]/',],
         ]);
 
         $super_admin = super_admin::create([
@@ -24,11 +24,11 @@ class super_adminAuthController extends Controller
             'password'=> Hash::make($data['password']),
         ]);
 
-        $token = $super_admin->createToken('BusBookingSystemProjectToken')->plainTextToken;
+        //$token = $super_admin->createToken('BusBookingSystemProjectToken')->plainTextToken;
 
         $response = [
             'user'=>$super_admin,
-            'token'=>$token,
+          //'token'=>$token,
         ];
 
         return response($response, 201);
@@ -45,7 +45,7 @@ class super_adminAuthController extends Controller
     {
         $data = $request->validate([
             'email'=>'required|email|max:191',
-            'password'=>'required|string',
+            'password'=>['required','string','min:8','regex:/[a-z]/','regex:/[A-Z]/','regex:/[0-9]/','regex:/[@$!%*#?&]/',],
         ]);
 
         $super_admin = super_admin::where('email', $data['email'])->first();

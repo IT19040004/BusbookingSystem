@@ -36,7 +36,7 @@ class bus_routesController extends Controller
         $request->validate([
             'bus_id'=>'required|max:191',
             'route_id'=>'required|max:191',
-            'status'=>'required|max:191',
+            'status'=>['required','max:191','regex:(active|blocked)'],
         ]);
   
         $bus_routes = new bus_routes;
@@ -54,7 +54,7 @@ class bus_routesController extends Controller
         $request->validate([
             'bus_id'=>'required|max:191',
             'route_id'=>'required|max:191',
-            'status'=>'required|max:191',
+            'status'=>['required','max:191','regex:(active|blocked)'],
         ]);
   
         $bus_routes = bus_routes::find($id);

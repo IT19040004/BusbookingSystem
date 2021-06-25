@@ -35,9 +35,9 @@ class bus_schedulesController extends Controller
     {
         $request->validate([
             'bus_route_id'=>'required|max:191',
-            'direction'=>'required|max:191',
-            'start_timestamp'=>'required|max:191',
-            'end_timestamp'=>'required|max:191',
+            'direction'=>['required','max:191','regex:(forward|revers)'],
+            'start_timestamp'=>['required','date_format:H:i','max:191'],
+            'end_timestamp'=>['required','date_format:H:i','max:191'],
         ]);
   
         $bus_schedules = new bus_schedules;
@@ -55,9 +55,9 @@ class bus_schedulesController extends Controller
     {
         $request->validate([
             'bus_route_id'=>'required|max:191',
-            'direction'=>'required|max:191',
-            'start_timestamp'=>'required|max:191',
-            'end_timestamp'=>'required|max:191',
+            'direction'=>['required','max:191','regex:(forward|revers)'],
+            'start_timestamp'=>['required','date_format:H:i','max:191'],
+            'end_timestamp'=>['required','date_format:H:i','max:191'],
         ]);
   
         $bus_schedules = bus_schedules::find($id);

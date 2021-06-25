@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class routes extends Model
 {
     use HasFactory;
-    protected $table = 'routes';
+    protected $table ='routes';
     protected $fillable =[
         'node_one',
         'node_two',

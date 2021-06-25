@@ -2,27 +2,28 @@
 
 use App\Http\Controllers\bus_routesController;
 use App\Http\Controllers\routesController;
-use App\Http\Controllers\super_adminsController;
-use App\Http\Controllers\busController;
+use App\Http\Controllers\BusController;
 use App\Http\Controllers\bus_seatesController;
 use App\Http\Controllers\bus_schedulesController;
 use App\Http\Controllers\bus_schedule_bookingsController;
-use App\Http\Controllers\usersController;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\super_adminAuthController;
-//use App\Http\Controllers\PasswordResetRequestUserController;
-
+use App\Http\Controllers\PasswordResetRequestUserController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+
+Route::post('sendEmail', 'App\Http\Controllers\UserMailController@sendEmail');
+
 Route::post('User_register', [AuthController::class, 'User_register']);
 Route::post('User_login', [AuthController::class, 'User_login']);
 //Route::post('sendEmail', [PasswordResetRequestUserController::class, 'sendEmail']);
-Route::post('sendEmail', 'App\Http\Controllers\PasswordResetRequestUserController@sendEmail');
+//Route::post('sendPasswordResetLink', [PasswordResetRequestUserController::class, '']);
 
 
-Route::middleware('auth:sanctum')->group(function () {
+
+Route::middleware('auth:sanctum')->group(function ($user) {
 
     Route::post('User_logout', [AuthController::class, 'User_logout']);
     
@@ -45,7 +46,7 @@ Route::put('bus_schedules/{id}/update',[bus_schedulesController::class, 'update'
 Route::delete('bus_schedules/{id}/delete',[bus_schedulesController::class, 'destroy']);
 
 
-//----------------bus_schedule_bookings-------------------
+//----------------bus_schedule_bookings------------
 
 //Get API Code
 Route::get('bus_schedule_bookings',[bus_schedule_bookingsController::class, 'index']);
@@ -65,10 +66,11 @@ Route::delete('bus_schedule_bookings/{id}/delete',[bus_schedule_bookingsControll
 
 });
 
+
 Route::post('super_admin_register', [super_adminAuthController::class, 'super_admin_register']);
 Route::post('super_admin_login', [super_adminAuthController::class, 'super_admin_login']);
 
-Route::middleware('auth:sanctum')->group(function () {
+Route::middleware('auth:sanctum')->group(function ($super_admin) {
 
     Route::post('super_admin_logout', [super_adminAuthController::class, 'super_admin_logout']);
     
@@ -109,22 +111,22 @@ Route::put('bus_routes/{id}/update',[bus_routesController::class, 'update']);
 Route::delete('bus_routes/{id}/delete',[bus_routesController::class, 'destroy']);
 
 
-//----------------Bus-------------------
+//----------------Bus---------------------------
 
 //Get API Code
-Route::get('buses',[busController::class, 'index']);
+Route::get('bus',[BusController::class, 'index']);
 
 //Show ID API Code
-Route::get('buses/{id}/show',[busController::class, 'show']);
+Route::get('bus/{id}/show',[BusController::class, 'show']);
 
 //insert API Code
-Route::post('buses/add',[busController::class, 'store']);
+Route::post('bus/add',[BusController::class, 'store']);
 
 //Update API Code
-Route::put('buses/{id}/update',[busController::class, 'update']);
+Route::put('bus/{id}/update',[BusController::class, 'update']);
 
 //Delete API Code
-Route::delete('buses/{id}/delete',[busController::class, 'destroy']);
+Route::delete('bus/{id}/delete',[BusController::class, 'destroy']);
 
 
 //----------------bus_seates-------------------

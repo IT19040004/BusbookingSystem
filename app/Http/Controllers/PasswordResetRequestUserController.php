@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use App\Models\User;
 use App\Mail\SendUserMailreset;
-use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\MAIL;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -26,7 +26,7 @@ class PasswordResetRequestUserController extends Controller
     public function send($email)  //this is a function to send mail 
     {
         $token = $this->createToken($email);
-        Mail::to($email)->send(new SendUserMailreset($token, $email));  // token is important in send mail 
+        MAIL::to($email)->send(new SendUserMailreset($token, $email));  // token is important in send mail 
     }
 
     public function createToken($email)  // this is a function to get your request email that there are or not to send mail

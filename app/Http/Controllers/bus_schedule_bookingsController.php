@@ -37,9 +37,9 @@ class bus_schedule_bookingsController extends Controller
             'bus_seate_id'=>'required|max:191',
             'user_id'=>'required|max:191',
             'bus_schedule_id'=>'required|max:191',
-            'seat_number'=>'required|max:191',
-            'price'=>'required|max:191',
-            'status'=>'required|max:191',
+            'seat_number'=>'required|numeric|max:191',
+            'price'=>'required|numeric|max:191',
+            'status'=>['required','max:191','regex:(cancel|active)'],
         ]);
   
         $bus_schedule_bookings = new bus_schedule_bookings;
@@ -62,9 +62,9 @@ class bus_schedule_bookingsController extends Controller
             'bus_seate_id'=>'required|max:191',
             'user_id'=>'required|max:191',
             'bus_schedule_id'=>'required|max:191',
-            'seat_number'=>'required|max:191',
-            'price'=>'required|max:191',
-            'status'=>'required|max:191',
+            'seat_number'=>'required|numeric|max:191',
+            'price'=>'required|numeric|max:191',
+            'status'=>['required','max:191','regex:(cancel|active)'],
         ]);
   
         $bus_schedule_bookings = bus_schedule_bookings::find($id);

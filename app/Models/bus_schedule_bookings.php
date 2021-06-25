@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class bus_schedule_bookings extends Model
 {
     use HasFactory;
-    protected $table = 'bus_schedule_bookings';
+    protected $table ='bus_schedule_bookings';
     protected $fillable =[
         'bus_seate_id',
         'user_id',

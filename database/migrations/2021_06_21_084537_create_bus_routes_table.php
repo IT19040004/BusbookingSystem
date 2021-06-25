@@ -14,13 +14,17 @@ class CreateBusRoutesTable extends Migration
     public function up()
     {
         Schema::create('bus_routes', function (Blueprint $table) {
+
             $table->id();
-            $table->string('bus_id');
-            $table->string('route_id');
+            $table->unsignedBigInteger('bus_id')->index();
+            $table->unsignedBigInteger('route_id')->index();
             $table->string('status');
-           // $table->foreignId('bus_id')->constrained()->references('id')->on('buses');
-           // $table->foreignId('route_id')->constrained()->references('id')->on('routes');
+            
+     //       $table->foreign('bus_id')->references('id')->on('bus')->onDelete('cascade');
+            $table->foreign('route_id')->references('id')->on('routes')->onDelete('cascade');
             $table->timestamps();
+
+            
         });
     }
 
