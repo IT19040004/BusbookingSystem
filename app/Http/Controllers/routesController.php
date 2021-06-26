@@ -49,7 +49,7 @@ class routesController extends Controller
         $routes->time = $request->time;
 
         $routes->save();
-        return response()->json(['message'=>'Added Successfully'], 200);
+        return response()->json(['message'=>'Added New Routes Successfully'], 200);
     }
 
     //Update Function
@@ -73,11 +73,11 @@ class routesController extends Controller
             $routes->time = $request->time;
 
             $routes->update();
-            return response()->json(['message'=>'Update Successfully'], 200);
+            return response()->json(['message'=>'Updated Successfully'], 200);
         }
         else
         {
-            return response()->json(['message'=>'Not Update routes Details'], 404);
+            return response()->json(['message'=>'Not Update Routes Details'], 404);
         }
         
     }
@@ -89,11 +89,11 @@ class routesController extends Controller
         if($routes)
         {
             $routes->delete();
-            return response()->json(['message'=>'Delete Successfully'], 200);
+            return response()->json(['message'=>'Deleted Successfully'], 200);
         }
         else
         {
-            return response()->json(['message'=>'Not Delete routes Details'], 404);
+            return response()->json(['message'=>'Not Delete Routes Details'], 404);
         }
     }
 }

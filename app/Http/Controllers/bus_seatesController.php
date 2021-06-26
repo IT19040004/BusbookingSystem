@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\busTable;
 use App\Models\bus_seates;
 use Illuminate\Http\Request;
 
@@ -25,7 +25,7 @@ class bus_seatesController extends Controller
         }
         else
         {
-            return response()->json(['message'=> 'No bus_seates Details'], 404);
+            return response()->json(['message'=> 'No Bus Seates Details'], 404);
         }
         
     }
@@ -34,42 +34,66 @@ class bus_seatesController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'bus_id'=>'required|max:191',
+            'bus_id'=>'required',
             'seat_number'=>'required|numeric|max:191',
             'price'=>'required|numeric|max:191',
         ]);
+
+        $b_id = $request->bus_id;
+        $busTable = busTable::find($b_id);
   
         $bus_seates = new bus_seates;
-        $bus_seates->bus_id = $request->bus_id;
-        $bus_seates->seat_number = $request->seat_number;
-        $bus_seates->price = $request->price;
+        if($busTable)
+            {
+              $bus_seates->bus_id = $request->bus_id;
+              $bus_seates->seat_number = $request->seat_number;
+              $bus_seates->price = $request->price;
 
-        $bus_seates->save();
-        return response()->json(['message'=>'Added Successfully'], 200);
+              $bus_seates->save();
+              return response()->json(['message'=>'Added New Bus Seates Successfully'], 200);
+            }
+
+        else{
+               return response()->json(['message'=>'bus_id Not Found'], 404);
+            }
+
     }
 
     //Update Function
     public function update(Request $request, $id)
     {
         $request->validate([
-            'bus_id'=>'required|max:191',
+            'bus_id'=>'required',
             'seat_number'=>'required|numeric|max:191',
             'price'=>'required|numeric|max:191',
         ]);
+
+        $b_id = $request->bus_id;
+        $busTable = busTable::find($b_id);
   
         $bus_seates = bus_seates::find($id);
         if($bus_seates)
         {
-            $bus_seates->bus_id = $request->bus_id;
-            $bus_seates->seat_number = $request->seat_number;
-            $bus_seates->price = $request->price;	
+            if($busTable)
+            {
+               $bus_seates->bus_id = $request->bus_id;
+               $bus_seates->seat_number = $request->seat_number;
+               $bus_seates->price = $request->price;	
            
-            $bus_seates->update();
-            return response()->json(['message'=>'Update Successfully'], 200);
+               $bus_seates->update();
+              return response()->json(['message'=>'Updated Successfully'], 200);
+            }
+
+            else{
+    
+                return response()->json(['message'=>'bus_id Not Found'], 404);
+    
+            } 
+
         }
         else
         {
-            return response()->json(['message'=>'Not Update bus_seates Details'], 404);
+            return response()->json(['message'=>'Not Update Bus Seates Details'], 404);
         }
         
     }
@@ -81,11 +105,11 @@ class bus_seatesController extends Controller
         if($bus_seates)
         {
             $bus_seates->delete();
-            return response()->json(['message'=>'Delete Successfully'], 200);
+            return response()->json(['message'=>'Deleted Successfully'], 200);
         }
         else
         {
-            return response()->json(['message'=>'Not Delete bus_seates Details'], 404);
+            return response()->json(['message'=>'Not Delete Bus Seates Details'], 404);
         }
     }
 }

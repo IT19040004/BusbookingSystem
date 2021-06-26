@@ -16,11 +16,13 @@ class CreateBusSeatesTable extends Migration
         Schema::create('bus_seates', function (Blueprint $table) {
 
             $table->id();
+            
             $table->unsignedBigInteger('bus_id')->index();
             $table->string('seat_number');
             $table->string('price');
 
-        //    $table->foreign('bus_id')->references('id')->on('bus')->onDelete('cascade');
+            //Set the Foreign Key
+      //    $table->foreign('bus_id')->references('id')->on('bus_tables')->onDelete('cascade');
             $table->timestamps();
 
         });

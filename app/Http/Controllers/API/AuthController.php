@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
+    //User Register Function
     public function User_register(Request $request)
     {
         
@@ -24,17 +25,15 @@ class AuthController extends Controller
             'password'=> Hash::make($data['password']),
         ]);
 
-        //$token = $user->createToken('BusBookingSystemProjectToken')->plainTextToken;
-
         $response = [
-            'user'=>$user,
-        //  'token'=>$token,
+            'user'=>$user,        
         ];
 
         return response($response, 201);
 
     }
    
+    //User Logout Function
     public function User_logout()
     {
         auth()->user()->tokens()->delete();
@@ -42,6 +41,7 @@ class AuthController extends Controller
         
     }
 
+    //User Login Function
     public function User_login(Request $request)
     {
         $data = $request->validate([

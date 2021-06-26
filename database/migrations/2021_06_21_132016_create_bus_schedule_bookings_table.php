@@ -23,7 +23,7 @@ class CreateBusScheduleBookingsTable extends Migration
             $table->string('price');
             $table->string('status');
             
-
+              //Set the Foreign Key
               $table->foreign('bus_seate_id')->references('id')->on('bus_seates')->onDelete('cascade');
               $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
               $table->foreign('bus_schedule_id')->references('id')->on('bus_schedules')->onDelete('cascade');

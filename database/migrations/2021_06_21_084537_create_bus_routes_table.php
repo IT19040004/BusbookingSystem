@@ -19,8 +19,9 @@ class CreateBusRoutesTable extends Migration
             $table->unsignedBigInteger('bus_id')->index();
             $table->unsignedBigInteger('route_id')->index();
             $table->string('status');
-            
-     //       $table->foreign('bus_id')->references('id')->on('bus')->onDelete('cascade');
+
+            //Set the Foreign Key
+        //  $table->foreign('bus_id')->references('id')->on('bus_tables')->onDelete('cascade');
             $table->foreign('route_id')->references('id')->on('routes')->onDelete('cascade');
             $table->timestamps();
 

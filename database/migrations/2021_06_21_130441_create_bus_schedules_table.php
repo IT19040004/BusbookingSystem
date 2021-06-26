@@ -21,7 +21,8 @@ class CreateBusSchedulesTable extends Migration
             $table->string('start_timestamp');
             $table->string('end_timestamp');
 
-           $table->foreign('bus_route_id')->references('id')->on('bus_routes')->onDelete('cascade');
+            //Set the Foreign Key
+            $table->foreign('bus_route_id')->references('id')->on('bus_routes')->onDelete('cascade');
             $table->timestamps();
         });
     }

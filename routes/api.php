@@ -2,9 +2,9 @@
 
 use App\Http\Controllers\bus_routesController;
 use App\Http\Controllers\routesController;
-use App\Http\Controllers\BusController;
 use App\Http\Controllers\bus_seatesController;
 use App\Http\Controllers\bus_schedulesController;
+use App\Http\Controllers\BusTableController;
 use App\Http\Controllers\bus_schedule_bookingsController;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\super_adminAuthController;
@@ -15,20 +15,22 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::post('sendEmail', 'App\Http\Controllers\UserMailController@sendEmail');
-
-Route::post('User_register', [AuthController::class, 'User_register']);
-Route::post('User_login', [AuthController::class, 'User_login']);
-//Route::post('sendEmail', [PasswordResetRequestUserController::class, 'sendEmail']);
 //Route::post('sendPasswordResetLink', [PasswordResetRequestUserController::class, '']);
 
+//---User Register
+Route::post('User_register', [AuthController::class, 'User_register']);
 
+//---User Login
+Route::post('User_login', [AuthController::class, 'User_login']);
 
-Route::middleware('auth:sanctum')->group(function ($user) {
+//---User Protecting Routes
+Route::middleware('auth:sanctum')->group(function () {
 
+//---User Logout    
     Route::post('User_logout', [AuthController::class, 'User_logout']);
     
 
-//----------------bus_schedules-------------------
+//---bus_schedules
 
 //Get API Code
 Route::get('bus_schedules',[bus_schedulesController::class, 'index']);
@@ -46,7 +48,7 @@ Route::put('bus_schedules/{id}/update',[bus_schedulesController::class, 'update'
 Route::delete('bus_schedules/{id}/delete',[bus_schedulesController::class, 'destroy']);
 
 
-//----------------bus_schedule_bookings------------
+//---bus_schedule_bookings
 
 //Get API Code
 Route::get('bus_schedule_bookings',[bus_schedule_bookingsController::class, 'index']);
@@ -66,16 +68,20 @@ Route::delete('bus_schedule_bookings/{id}/delete',[bus_schedule_bookingsControll
 
 });
 
-
+//---Super_Admin_register
 Route::post('super_admin_register', [super_adminAuthController::class, 'super_admin_register']);
+
+//---Super_Admin_login
 Route::post('super_admin_login', [super_adminAuthController::class, 'super_admin_login']);
 
-Route::middleware('auth:sanctum')->group(function ($super_admin) {
+
+//---User Protecting Routes
+Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('super_admin_logout', [super_adminAuthController::class, 'super_admin_logout']);
     
 
-//----------------routes-------------------
+//---routes
 
 //Get API Code
 Route::get('routes',[routesController::class, 'index']);
@@ -93,7 +99,7 @@ Route::put('routes/{id}/update',[routesController::class, 'update']);
 Route::delete('routes/{id}/delete',[routesController::class, 'destroy']);
 
 
-//----------------Bus routes-------------------
+//---Bus routes
 
 //Get API Code
 Route::get('bus_routes',[bus_routesController::class, 'index']);
@@ -111,25 +117,25 @@ Route::put('bus_routes/{id}/update',[bus_routesController::class, 'update']);
 Route::delete('bus_routes/{id}/delete',[bus_routesController::class, 'destroy']);
 
 
-//----------------Bus---------------------------
+//---bus_Table
 
 //Get API Code
-Route::get('bus',[BusController::class, 'index']);
+Route::get('bus_tables',[BusTableController::class, 'index']);
 
 //Show ID API Code
-Route::get('bus/{id}/show',[BusController::class, 'show']);
+Route::get('bus_tables/{id}/show',[BusTableController::class, 'show']);
 
 //insert API Code
-Route::post('bus/add',[BusController::class, 'store']);
+Route::post('bus_tables/add',[BusTableController::class, 'store']);
 
 //Update API Code
-Route::put('bus/{id}/update',[BusController::class, 'update']);
+Route::put('bus_tables/{id}/update',[BusTableController::class, 'update']);
 
 //Delete API Code
-Route::delete('bus/{id}/delete',[BusController::class, 'destroy']);
+Route::delete('bus_tables/{id}/delete',[BusTableController::class, 'destroy']);
 
 
-//----------------bus_seates-------------------
+//---bus_seates
 
 //Get API Code
 Route::get('bus_seates',[bus_seatesController::class, 'index']);

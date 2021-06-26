@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\MAIL;
 class UserMailController extends Controller
 {
     public function sendEmail(Request $request) { 
-        $title = 'Thank you for your order'; 
+        $title = 'Thank you for your Bookings'; 
         $customer_details = [ 
         'name' => $request->get('name'), 
         

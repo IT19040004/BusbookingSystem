@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 
 class super_adminAuthController extends Controller
 {
+    //Super Admin Register Function
     public function super_admin_register(Request $request)
     {
         
@@ -24,23 +25,22 @@ class super_adminAuthController extends Controller
             'password'=> Hash::make($data['password']),
         ]);
 
-        //$token = $super_admin->createToken('BusBookingSystemProjectToken')->plainTextToken;
-
         $response = [
             'user'=>$super_admin,
-          //'token'=>$token,
         ];
 
         return response($response, 201);
 
     }
    
+    //Super Admin Logout Function
     public function super_admin_logout()
     {
         auth()->user()->tokens()->delete();
         return response(['message'=>'Logged Out Successfully.']);
     }
 
+    //Super Admin Login Function
     public function super_admin_login(Request $request)
     {
         $data = $request->validate([
